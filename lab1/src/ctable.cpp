@@ -39,6 +39,7 @@ CTable::CTable(const CTable& pOther)
 CTable::~CTable()
 {
     delete[] this->pTable;
+
     printf("usuwam: %s", this->name.c_str());
 }
 
