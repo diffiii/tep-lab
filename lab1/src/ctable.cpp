@@ -1,0 +1,78 @@
+#include "ctable.h"
+
+#include <string>
+#include <cstdio>
+#include "const.h"
+
+CTable::CTable()
+{
+    this->name = DEFAULT_CTABLE_NAME;
+    this->tableSize = DEFAULT_CTABLE_SIZE;
+    this->pTable = new int[this->tableSize];
+
+    printf("bezp: %s", this->name.c_str());
+}
+
+CTable::CTable(const std::string& name, const int tableSize)
+{
+    this->name = name;
+    this->tableSize = tableSize;
+    this->pTable = new int[this->tableSize];
+
+    printf("parametr: %s", this->name.c_str());
+}
+
+CTable::CTable(const CTable& pOther)
+{
+    this->name = pOther.name + "_copy";
+    this->tableSize = pOther.tableSize;
+    this->pTable = new int[this->tableSize];
+
+    for (int i = 0; i < this->tableSize; i++)
+    {
+        this->pTable[i] = pOther.pTable[i];
+    }
+
+    printf("kopiuj: %s", this->name.c_str());
+}
+
+CTable::~CTable()
+{
+    delete[] this->pTable;
+    printf("usuwam: %s", this->name.c_str());
+}
+
+void CTable::setName(const std::string& name)
+{
+    this->name = name;
+}
+
+bool CTable::setNewSize(const int tableSize)
+{
+    if (tableSize <= 0)
+    {
+        return false;
+    }
+
+    this->tableSize = tableSize;
+
+    delete[] this->pTable;
+    this->pTable = new int[this->tableSize];
+
+    return true;
+}
+
+CTable* CTable::pClone() const
+{
+    return new CTable(*this);
+}
+
+void modifyTable(CTable *pTable, const int newTableSize)
+{
+    pTable->setNewSize(newTableSize);
+}
+
+void modifyTable(CTable table, const int newTableSize)
+{
+    table.setNewSize(newTableSize);
+}
