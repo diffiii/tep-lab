@@ -29,16 +29,19 @@ Table::Table(const std::string& name, const int tableSize)
 
 Table::Table(const Table& pOther)
 {
-    this->name = pOther.name + "_copy";
-    this->tableSize = pOther.tableSize;
-    this->pTable = new int[this->tableSize];
-
-    for (int i = 0; i < this->tableSize; i++)
+    if (&pOther != NULL)
     {
-        this->pTable[i] = pOther.pTable[i];
-    }
+        this->name = pOther.name + "_copy";
+        this->tableSize = pOther.tableSize;
+        this->pTable = new int[this->tableSize];
 
-    printf("kopiuj: %s\n", this->name.c_str());
+        for (int i = 0; i < this->tableSize; i++)
+        {
+            this->pTable[i] = pOther.pTable[i];
+        }
+
+        printf("kopiuj: %s\n", this->name.c_str());
+    }
 }
 
 Table::~Table()

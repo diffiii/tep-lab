@@ -29,7 +29,7 @@ void allocateTableAndFill(const int tableSize)
 /* Zadanie 2 */
 bool allocateTwoDimensionalTable(int*** pTable, const int tableSizeX, const int tableSizeY)
 {
-    if (tableSizeX <= 0 || tableSizeY <= 0)
+    if (tableSizeX <= 0 || tableSizeY <= 0 || pTable == NULL)
     {
         return false;
     }
@@ -47,7 +47,7 @@ bool allocateTwoDimensionalTable(int*** pTable, const int tableSizeX, const int 
 /* Zadanie 3 */
 bool deallocateTwoDimensionalTable(int*** pTable, const int tableSizeX, const int tableSizeY)
 {
-    if (tableSizeX <= 0 || tableSizeY <= 0)
+    if (tableSizeX <= 0 || tableSizeY <= 0 || pTable == NULL)
     {
         return false;
     }
