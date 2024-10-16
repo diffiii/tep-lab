@@ -5,6 +5,8 @@
 #include <limits.h>
 #include "const.h"
 
+/* Zadanie 4 */
+
 Table::Table()
 {
     this->name = DEFAULT_CTABLE_NAME;

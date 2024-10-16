@@ -1,8 +1,11 @@
+#pragma once
+
 #ifndef CTABLE_H
 #define CTABLE_H
 
 #include <string>
 
+/* Zadanie 4 */
 class Table
 {
     std::string name;

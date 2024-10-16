@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef ALLOCATIONS_H
 #define ALLOCATIONS_H
 
