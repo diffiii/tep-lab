@@ -8,7 +8,7 @@ void allocateTableAndFill(const int tableSize)
 {
     if (tableSize <= 0)
     {
-        printf("Table size has to be greater than 0!");
+        printf("Table size has to be greater than 0!\n");
     }
     else
     {

@@ -10,7 +10,7 @@ CTable::CTable()
     this->tableSize = DEFAULT_CTABLE_SIZE;
     this->pTable = new int[this->tableSize];
 
-    printf("bezp: %s", this->name.c_str());
+    printf("bezp: %s\n", this->name.c_str());
 }
 
 CTable::CTable(const std::string& name, const int tableSize)
@@ -19,7 +19,7 @@ CTable::CTable(const std::string& name, const int tableSize)
     this->tableSize = tableSize;
     this->pTable = new int[this->tableSize];
 
-    printf("parametr: %s", this->name.c_str());
+    printf("parametr: %s\n", this->name.c_str());
 }
 
 CTable::CTable(const CTable& pOther)
@@ -33,14 +33,14 @@ CTable::CTable(const CTable& pOther)
         this->pTable[i] = pOther.pTable[i];
     }
 
-    printf("kopiuj: %s", this->name.c_str());
+    printf("kopiuj: %s\n", this->name.c_str());
 }
 
 CTable::~CTable()
 {
     delete[] this->pTable;
 
-    printf("usuwam: %s", this->name.c_str());
+    printf("usuwam: %s\n", this->name.c_str());
 }
 
 void CTable::setName(const std::string& name)
@@ -55,10 +55,19 @@ bool CTable::setNewSize(const int tableSize)
         return false;
     }
 
-    this->tableSize = tableSize;
+    int* pNewSizedTable = new int[tableSize];
+
+    const int numberOfValuesToCopy = std::min(this->tableSize, tableSize);
+
+    for (int i = 0; i < numberOfValuesToCopy; i++)
+    {
+        pNewSizedTable[i] = this->pTable[i];
+    }
 
     delete[] this->pTable;
-    this->pTable = new int[this->tableSize];
+    this->pTable = pNewSizedTable;
+
+    this->tableSize = tableSize;
 
     return true;
 }
@@ -67,6 +76,13 @@ CTable* CTable::pClone() const
 {
     return new CTable(*this);
 }
+
+void CTable::printInfo() const
+{
+    printf("CTable name: %s\n", this->name.c_str());
+    printf("tableSize: %d\n", this->tableSize);
+}
+
 
 void modifyTable(CTable *pTable, const int newTableSize)
 {

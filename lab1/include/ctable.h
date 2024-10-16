@@ -17,6 +17,7 @@ public:
     void setName(const std::string& name);
     bool setNewSize(int tableSize);
     CTable* pClone() const;
+    void printInfo() const;
 };
 
 void modifyTable(CTable* pTable, int newTableSize);
