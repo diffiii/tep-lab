@@ -12,5 +12,5 @@ add_executable(lab1
         src/utils.cpp
         include/allocations.h
         src/allocations.cpp
-        include/ctable.h
-        src/ctable.cpp)
+        include/table.h
+        src/table.cpp)

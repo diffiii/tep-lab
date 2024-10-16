@@ -1,7 +1,8 @@
 #include <cstdlib>
 
+#include <cstdio>
 #include "allocations.h"
-#include "ctable.h"
+#include "table.h"
 
 int main()
 {
@@ -12,23 +13,30 @@ int main()
     allocateTwoDimensionalTable(&pTwoDimensionalTable, 5, 3);
     deallocateTwoDimensionalTable(&pTwoDimensionalTable, 5, 3);
 
-    CTable ctableDefault;
-    const CTable *pCTableParameters = new CTable("test", 5);
-    CTable ctableCopy(ctableDefault);
+    printf("%s\n", allocateTwoDimensionalTable(&pTwoDimensionalTable, 5, 3) ? "true" : "false");
+    printf("%s\n", deallocateTwoDimensionalTable(&pTwoDimensionalTable, 5, 3) ? "true" : "false");
 
-    ctableDefault.setName("new name");
+    Table tableDefault;
+    const Table *pTableParameters = new Table("test", 5);
+    Table tableCopy(tableDefault);
 
-    const CTable* pCTableClone = pCTableParameters->pClone();
+    tableDefault.setName("new name");
+
+    const Table* pCTableClone = pTableParameters->pClone();
     pCTableClone->printInfo();
 
-    modifyTable(&ctableCopy, 10);
-    ctableCopy.printInfo();
+    modifyTable(&tableCopy, 10);
+    tableCopy.printInfo();
 
-    modifyTable(ctableCopy, 8);
-    ctableCopy.printInfo();
+    modifyTable(tableCopy, 8);
+    tableCopy.printInfo();
 
-    delete pCTableParameters;
+    delete pTableParameters;
     delete pCTableClone;
+
+    tableDefault.printInfo();
+    printf("%s\n", tableDefault.doubleSize() ? "true" : "false");
+    tableDefault.printInfo();
 
     return EXIT_SUCCESS;
 }
