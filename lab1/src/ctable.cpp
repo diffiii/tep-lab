@@ -83,7 +83,6 @@ void CTable::printInfo() const
     printf("tableSize: %d\n", this->tableSize);
 }
 
-
 void modifyTable(CTable *pTable, const int newTableSize)
 {
     pTable->setNewSize(newTableSize);

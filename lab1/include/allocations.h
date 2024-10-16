@@ -1,8 +1,13 @@
 #ifndef ALLOCATIONS_H
 #define ALLOCATIONS_H
 
+/* Zadanie 1 */
 void allocateTableAndFill(int tableSize);
-bool allocateTwoDimensionalTable(int*** pTable, int cols, int rows);
-bool deallocateTwoDimensionalTable(int*** pTable, int cols, int rows);
+
+/* Zadanie 2 */
+bool allocateTwoDimensionalTable(int*** pTable, int tableSizeX, int tableSizeY);
+
+/* Zadanie 3 */
+bool deallocateTwoDimensionalTable(int*** pTable, int tableSizeX, int tableSizeY);
 
 #endif

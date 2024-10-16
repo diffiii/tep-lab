@@ -18,7 +18,7 @@ int main()
 
     ctableDefault.setName("new name");
 
-    CTable* pCTableClone = pCTableParameters->pClone();
+    const CTable* pCTableClone = pCTableParameters->pClone();
     pCTableClone->printInfo();
 
     modifyTable(&ctableCopy, 10);

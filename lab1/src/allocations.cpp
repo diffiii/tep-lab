@@ -4,6 +4,7 @@
 #include "const.h"
 #include "utils.h"
 
+/* Zadanie 1 */
 void allocateTableAndFill(const int tableSize)
 {
     if (tableSize <= 0)
@@ -25,31 +26,33 @@ void allocateTableAndFill(const int tableSize)
     }
 }
 
-bool allocateTwoDimensionalTable(int*** pTable, const int cols, const int rows)
+/* Zadanie 2 */
+bool allocateTwoDimensionalTable(int*** pTable, const int tableSizeX, const int tableSizeY)
 {
-    if (cols <= 0 || rows <= 0)
+    if (tableSizeX <= 0 || tableSizeY <= 0)
     {
         return false;
     }
 
-    *pTable = new int*[rows];
+    *pTable = new int*[tableSizeX];
 
-    for (int i = 0; i < rows; i++)
+    for (int i = 0; i < tableSizeX; i++)
     {
-        (*pTable)[i] = new int[cols];
+        (*pTable)[i] = new int[tableSizeY];
     }
 
     return true;
 }
 
-bool deallocateTwoDimensionalTable(int*** pTable, const int cols, const int rows)
+/* Zadanie 3 */
+bool deallocateTwoDimensionalTable(int*** pTable, const int tableSizeX, const int tableSizeY)
 {
-    if (cols <= 0 || rows <= 0)
+    if (tableSizeX <= 0 || tableSizeY <= 0)
     {
         return false;
     }
 
-    for (int i = 0; i < rows; i++)
+    for (int i = 0; i < tableSizeX; i++)
     {
         delete[] (*pTable)[i];
     }

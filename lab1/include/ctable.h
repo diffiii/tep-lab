@@ -6,8 +6,8 @@
 class CTable
 {
     std::string name;
-    int* pTable;
     int tableSize;
+    int* pTable;
 
 public:
     CTable();
