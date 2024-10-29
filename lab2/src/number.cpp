@@ -406,23 +406,7 @@ Number Number::divAbs(const Number& other) const
     remainder.length = newLength;
     remainder.digits = newDigits;
 
-    uint leadingZeros = 0;
-
-    while ((leadingZeros < remainder.length - 1)
-        && (remainder.digits[leadingZeros] == 0))
-    {
-      leadingZeros++;
-    }
-
-    if (leadingZeros > 0)
-    {
-      for (uint i = 0; i < remainder.length - leadingZeros; i++)
-      {
-        remainder.digits[i] = remainder.digits[i + leadingZeros];
-      }
-
-      remainder.length -= leadingZeros;
-    }
+    remainder.removeLeadingZeros();
 
     digit quotientDigit = 0;
 
