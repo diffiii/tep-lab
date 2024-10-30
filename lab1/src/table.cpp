@@ -16,15 +16,18 @@ Table::Table()
     printf("bezp: %s\n", this->name.c_str());
 }
 
-Table::Table(const std::string& name, const int tableSize)
+Table::Table(const std::string& name, int tableSize)
 {
-    if (tableSize >= 1) {
-        this->name = name;
-        this->tableSize = tableSize;
-        this->pTable = new int[this->tableSize];
-
-        printf("parametr: %s\n", this->name.c_str());
+    if (tableSize < 1)
+    {
+        tableSize = DEFAULT_CTABLE_SIZE;
     }
+
+    this->name = name;
+    this->tableSize = tableSize;
+    this->pTable = new int[this->tableSize];
+
+    printf("parametr: %s\n", this->name.c_str());
 }
 
 Table::Table(const Table& pOther)

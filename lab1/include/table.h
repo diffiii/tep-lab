@@ -8,10 +8,6 @@
 /* Zadanie 4 */
 class Table
 {
-    std::string name;
-    int tableSize;
-    int* pTable;
-
 public:
     Table();
     Table(const std::string& name, int tableSize);
@@ -22,6 +18,11 @@ public:
     Table* pClone() const;
     bool doubleSize();
     void printInfo() const;
+
+private:
+    std::string name;
+    int tableSize;
+    int* pTable;
 };
 
 void modifyTable(Table* pTable, int newTableSize);

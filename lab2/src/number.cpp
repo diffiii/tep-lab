@@ -12,7 +12,7 @@ Number::Number()
 
 Number::Number(const int value)
 {
-  this->initFromInt(value);
+  this->initFromInt(value, NUMBER_SYSTEM);
 }
 
 Number::Number(const Number& other)
@@ -23,7 +23,7 @@ Number::Number(const Number& other)
 Number& Number::operator=(const int value)
 {
   delete[] this->digits;
-  this->initFromInt(value);
+  this->initFromInt(value, NUMBER_SYSTEM);
 
   return *this;
 }
@@ -70,6 +70,11 @@ bool Number::operator<=(const Number& other) const
 bool Number::operator>=(const Number& other) const
 {
   return !(*this < other);
+}
+
+void Number::operator^=(const int value)
+{
+  this->initFromInt(value, 4);
 }
 
 Number Number::operator+(const Number& other) const
@@ -189,7 +194,7 @@ std::string Number::toString() const
   return result;
 }
 
-void Number::initFromInt(int value)
+void Number::initFromInt(int value, const uint system)
 {
   if (value < 0)
   {
@@ -201,7 +206,7 @@ void Number::initFromInt(int value)
     this->isNegative = false;
   }
 
-  const std::vector<digit> valueAsString = uintToDigitsVector(value);
+  const std::vector<digit> valueAsString = uintToDigitsVector(value, system);
 
   this->length = valueAsString.size();
   this->digits = new digit[this->length];
@@ -446,23 +451,28 @@ void Number::removeLeadingZeros()
 
   if (leadingZerosResult > 0)
   {
+    digit* newDigits = new digit[this->length - leadingZerosResult];
+
     for (uint i = 0; i < this->length - leadingZerosResult; i++)
     {
-      this->digits[i] = this->digits[i + leadingZerosResult];
+      newDigits[i] = this->digits[i + leadingZerosResult];
     }
 
+    delete[] this->digits;
+
     this->length -= leadingZerosResult;
+    this->digits = newDigits;
   }
 }
 
-std::vector<digit> Number::uintToDigitsVector(uint number)
+std::vector<digit> Number::uintToDigitsVector(uint number, const uint system)
 {
   std::vector<digit> result;
 
   while (number)
   {
-    result.push_back(number % NUMBER_SYSTEM);
-    number /= NUMBER_SYSTEM;
+    result.push_back(number % system);
+    number /= system;
   }
 
   std::reverse(result.begin(), result.end());

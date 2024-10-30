@@ -26,6 +26,8 @@ public:
   bool operator<=(const Number& other) const;
   bool operator>=(const Number& other) const;
 
+  void operator^=(int value);
+
   Number operator+(const Number& other) const;
   Number operator-(const Number& other) const;
   Number operator*(const Number& other) const;
@@ -38,7 +40,7 @@ private:
   digit* digits;
   bool isNegative;
 
-  void initFromInt(int value);
+  void initFromInt(int value, uint system);
   void initFromOther(const Number& other);
 
   int compareAbs(const Number& other) const;
@@ -48,7 +50,7 @@ private:
   Number divAbs(const Number& other) const;
   void removeLeadingZeros();
 
-  static std::vector<digit> uintToDigitsVector(uint number);
+  static std::vector<digit> uintToDigitsVector(uint number, uint system);
 };
 
 #endif
