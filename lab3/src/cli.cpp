@@ -12,7 +12,7 @@ CLI::~CLI()
   delete this->tree;
 }
 
-void CLI::run() const
+void CLI::run()
 {
   printBanner();
 
@@ -79,7 +79,12 @@ void CLI::run() const
     }
     else if (command == "join")
     {
-      // TODO
+      Tree *newTree = new Tree();
+      newTree->enterFormula(arguments);
+
+      *this->tree = *this->tree + *newTree;
+
+      delete newTree;
     }
     else if (command == "exit")
     {

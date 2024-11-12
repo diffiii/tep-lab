@@ -65,7 +65,7 @@ class CLI
 public:
   CLI();
   ~CLI();
-  void run() const;
+  void run();
 
 private:
   Tree *tree;

@@ -3,7 +3,7 @@
 
 int main()
 {
-    const CLI cli;
+    CLI cli;
     cli.run();
 
     return EXIT_SUCCESS;

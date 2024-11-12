@@ -21,9 +21,11 @@ public:
   double eval() const;
   std::string repr() const;
   bool empty() const;
+  Tree& operator=(const Tree &other);
+  Tree operator+(const Tree &other) const;
 
 private:
-  const nodes::Base *root;
+  nodes::Base *root;
   std::set<std::string> varNames;
   std::map<std::string, uint8_t> vars;
 

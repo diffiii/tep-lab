@@ -83,6 +83,31 @@ bool Tree::empty() const
   return this->root == nullptr;
 }
 
+Tree& Tree::operator=(const Tree &other)
+{
+  if (this != &other)
+  {
+    delete this->root;
+    this->enterFormula(other.repr());
+  }
+
+  return *this;
+}
+
+Tree Tree::operator+(const Tree &other) const
+{
+  Tree result;
+
+  const std::string &repr = this->repr();
+
+  if (!repr.empty())
+  {
+    result.enterFormula(repr.substr(0, repr.length() - 1) + other.repr());
+  }
+
+  return result;
+}
+
 std::string Tree::validateVarName(const std::string &name)
 {
   bool containsLetter = false;
