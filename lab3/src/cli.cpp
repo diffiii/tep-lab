@@ -60,13 +60,13 @@ void CLI::run()
 
         vars[varName] = arguments.empty() ? 0 : arguments[0] - '0';
 
-        if (arguments.length() > 1)
+        if (!arguments.empty())
         {
-          arguments = arguments.substr(2);
+          arguments = arguments.substr(1);
         }
       }
 
-      arguments = arguments.substr(1);
+      strip(arguments);
 
       if (!arguments.empty())
       {
@@ -95,6 +95,11 @@ void CLI::run()
       std::cout << UNKNOWN_COMMAND;
     }
   }
+}
+
+void CLI::printInfo(const std::string &info)
+{
+  std::cout << info;
 }
 
 void CLI::printBanner()

@@ -1,6 +1,5 @@
 #include "tree.h"
 
-#include <iostream>
 #include <sstream>
 #include "cli.h"
 #include "nodes/functions/sin.h"
@@ -42,7 +41,7 @@ void Tree::enterFormula(const std::string &formula)
   {
     for (const std::string &token : tokens)
     {
-      std::cout << SKIPPING_TOKEN << token << "\n";
+      CLI::printInfo(SKIPPING_TOKEN + token + "\n");
     }
   }
 }
@@ -59,7 +58,7 @@ uint8_t Tree::getVar(const std::string &name) const
     return this->vars.at(name);
   }
 
-  std::cout << VAR_VALUE_NOT_FOUND;
+  CLI::printInfo(VAR_VALUE_NOT_FOUND);
   return 0;
 }
 
@@ -129,13 +128,13 @@ std::string Tree::validateVarName(const std::string &name)
     }
     else
     {
-      std::cout << INVALID_CHAR << current << "\n";
+      CLI::printInfo(INVALID_CHAR + current + "\n");
     }
   }
 
   if (!containsLetter)
   {
-    std::cout << VAR_NO_LETTER;
+    CLI::printInfo(VAR_NO_LETTER);
     return DEFAULT_VAR_NAME;
   }
 
@@ -194,7 +193,7 @@ nodes::Base *Tree::buildSubtree(std::vector<std::string> &tokens)
   {
     if (tokens.empty())
     {
-      std::cout << NOT_ENOUGH_ARGS;
+      CLI::printInfo(NOT_ENOUGH_ARGS);
       node->setChild(i, new nodes::Const());
     }
     else

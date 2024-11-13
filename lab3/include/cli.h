@@ -66,6 +66,7 @@ public:
   CLI();
   ~CLI();
   void run();
+  static void printInfo(const std::string &info);
 
 private:
   Tree *tree;
