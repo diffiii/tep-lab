@@ -9,6 +9,13 @@
 
 static const std::string DEFAULT_VAR_NAME = "default";
 
+static const std::string PLUS_SIGN = "+";
+static const std::string MINUS_SIGN = "-";
+static const std::string MULT_SIGN = "*";
+static const std::string DIV_SIGN = "/";
+static const std::string SIN_SIGN = "sin";
+static const std::string COS_SIGN = "cos";
+
 class Tree
 {
 public:
@@ -23,6 +30,8 @@ public:
   bool empty() const;
   Tree& operator=(const Tree &other);
   Tree operator+(const Tree &other) const;
+
+  uint leavesCount() const;
 
 private:
   nodes::Base *root;

@@ -4,7 +4,7 @@
 #include <string>
 #include "tree.h"
 
-static const std::string LINE_PREFIX = ".";
+static const std::string LINE_PREFIX = "> ";
 
 static const std::string BANNER =
   " __  __      _   _  _____             ___ _    ___\n"
@@ -30,6 +30,9 @@ static const std::string HELP =
   "  print                            "
   "Display currently saved tree in prefix notation\n"
   ""
+  "  leaves                           "
+  "Display the number of leaves in the tree\n"
+  ""
   "  comp <var1> <var2> ... <varN>    "
   "Evaluate tree's value based on given variables' values\n"
   ""
@@ -38,6 +41,15 @@ static const std::string HELP =
   ""
   "  exit                             "
   "Terminate MathTreeCLI's execution\n";
+
+static const std::string HELP_COMMAND = "help";
+static const std::string ENTER_COMMAND = "enter";
+static const std::string VARS_COMMAND = "vars";
+static const std::string PRINT_COMMAND = "print";
+static const std::string LEAVES_COMMAND = "leaves";
+static const std::string COMP_COMMAND = "comp";
+static const std::string JOIN_COMMAND = "join";
+static const std::string EXIT_COMMAND = "exit";
 
 static const std::string UNKNOWN_COMMAND =
   "Unknown command. Type `" + LINE_PREFIX + "help` for usage information.\n";
@@ -59,6 +71,9 @@ static const std::string NOT_ENOUGH_ARGS =
 
 static const std::string TOO_MANY_VARS =
   "Too many variables. Ignoring excessive values.\n";
+
+static const std::string DIVISION_BY_ZERO =
+  "Can't divide by zero! Evaluating division to 0 instead.\n";
 
 class CLI
 {

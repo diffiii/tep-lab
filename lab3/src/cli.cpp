@@ -30,26 +30,30 @@ void CLI::run()
 
     strip(arguments);
 
-    if (command == "help")
+    if (command == HELP_COMMAND)
     {
       printHelp();
     }
-    else if (command == "enter")
+    else if (command == ENTER_COMMAND)
     {
       this->tree->enterFormula(arguments);
     }
-    else if (command == "vars")
+    else if (command == VARS_COMMAND)
     {
       this->printVars();
     }
-    else if (command == "print")
+    else if (command == PRINT_COMMAND)
     {
       if (!this->tree->empty())
       {
         std::cout << this->tree->repr() << "\n";
       }
     }
-    else if (command == "comp")
+    else if (command == LEAVES_COMMAND)
+    {
+      std::cout << this->tree->leavesCount() << "\n";
+    }
+    else if (command == COMP_COMMAND)
     {
       std::map<std::string, uint8_t> vars;
       const std::set<std::string> varNames = this->tree->getVars();
@@ -58,7 +62,12 @@ void CLI::run()
       {
         strip(arguments);
 
-        vars[varName] = arguments.empty() ? 0 : arguments[0] - '0';
+        if (arguments.empty()) {
+          vars[varName] = 0;
+          printInfo(VAR_VALUE_NOT_FOUND);
+        } else {
+          vars[varName] = arguments[0] - '0';
+        }
 
         if (!arguments.empty())
         {
@@ -77,7 +86,7 @@ void CLI::run()
 
       std::cout << this->tree->eval() << "\n";
     }
-    else if (command == "join")
+    else if (command == JOIN_COMMAND)
     {
       Tree *newTree = new Tree();
       newTree->enterFormula(arguments);
@@ -86,7 +95,7 @@ void CLI::run()
 
       delete newTree;
     }
-    else if (command == "exit")
+    else if (command == EXIT_COMMAND)
     {
       break;
     }

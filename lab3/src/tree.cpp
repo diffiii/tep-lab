@@ -58,7 +58,7 @@ uint8_t Tree::getVar(const std::string &name) const
     return this->vars.at(name);
   }
 
-  CLI::printInfo(VAR_VALUE_NOT_FOUND);
+  // CLI::printInfo(VAR_VALUE_NOT_FOUND);
   return 0;
 }
 
@@ -105,6 +105,35 @@ Tree Tree::operator+(const Tree &other) const
   }
 
   return result;
+}
+
+uint Tree::leavesCount() const
+{
+  uint leavesCount = 0;
+
+  std::istringstream stream(this->repr());
+  std::string current;
+
+  while (stream >> current)
+  {
+    if (current.length() == 1) // Current is const
+    {
+      if (current[0] >= '0' && current[0] <= '9')
+      {
+        leavesCount++;
+      }
+    }
+
+    for (const std::string &varName : this->varNames)
+    {
+      if (current == varName)
+      {
+        leavesCount++;
+      }
+    }
+  }
+
+  return leavesCount;
 }
 
 std::string Tree::validateVarName(const std::string &name)
@@ -158,27 +187,27 @@ nodes::Base *Tree::buildSubtree(std::vector<std::string> &tokens)
 
   nodes::Base *node;
 
-  if (current == "+")
+  if (current == PLUS_SIGN)
   {
     node = new nodes::Add();
   }
-  else if (current == "-")
+  else if (current == MINUS_SIGN)
   {
     node = new nodes::Sub();
   }
-  else if (current == "*")
+  else if (current == MULT_SIGN)
   {
     node = new nodes::Mul();
   }
-  else if (current == "/")
+  else if (current == DIV_SIGN)
   {
     node = new nodes::Div();
   }
-  else if (current == "sin")
+  else if (current == SIN_SIGN)
   {
     node = new nodes::Sin();
   }
-  else if (current == "cos")
+  else if (current == COS_SIGN)
   {
     node = new nodes::Cos();
   }
