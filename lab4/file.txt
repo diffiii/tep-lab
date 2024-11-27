@@ -1,1 +1,2 @@
-* 2 sin + x - 1 / a 3
+[ERROR] Found unexpected token: c
+[ERROR] Found unexpected token: d

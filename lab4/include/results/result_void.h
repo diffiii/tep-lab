@@ -116,7 +116,14 @@ bool Result<void, E>::isFailure() const
 template <typename E>
 const std::vector<E*> &Result<void, E>::getErrors() const
 {
-  return this->errors;
+  std::vector<E*> *errors = new std::vector<E*>();
+
+  for (size_t i = 0; i < this->errors.size(); i++)
+  {
+    errors->push_back(new E(*this->errors[i]));
+  }
+
+  return *errors;
 }
 
 #endif

@@ -24,7 +24,7 @@ public:
   bool isFailure() const;
 
   T getValue() const;
-  const std::vector<E*> &getErrors() const;
+  std::vector<E*> &getErrors() const;
 
 private:
   T *value;
@@ -71,6 +71,11 @@ Result<T, E>::~Result()
 {
   delete this->value;
 
+  for (size_t i = 0; i < this->errors.size(); i++)
+  {
+    delete this->errors[i];
+  }
+
   this->errors.clear();
 }
 
@@ -99,6 +104,11 @@ Result<T, E> &Result<T, E>::operator=(const Result &other)
   {
     delete this->value;
     this->value = (other.value != nullptr) ? new T(*other.value) : nullptr;
+
+    for (size_t i = 0; i < this->errors.size(); i++)
+    {
+      delete this->errors[i];
+    }
 
     this->errors.clear();
 
@@ -131,9 +141,16 @@ T Result<T, E>::getValue() const
 }
 
 template <typename T, typename E>
-const std::vector<E*> &Result<T, E>::getErrors() const
+std::vector<E*> &Result<T, E>::getErrors() const
 {
-  return this->errors;
+  std::vector<E*> *errors = new std::vector<E*>();
+
+  for (size_t i = 0; i < this->errors.size(); i++)
+  {
+    errors->push_back(new E(*this->errors[i]));
+  }
+
+  return *errors;
 }
 
 #include "result_void.h"

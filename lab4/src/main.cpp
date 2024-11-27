@@ -6,7 +6,7 @@
 
 int main()
 {
-  const std::string formula = "* 2 sin + x - 1 / a 3";
+  const std::string formula = "* 2 sin + x - 1 / a 3 c d";
 
   Tree *tree = new Tree();
   Saver<Tree*> *saver = new Saver<Tree*>();
