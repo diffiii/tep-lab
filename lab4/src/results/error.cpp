@@ -15,7 +15,12 @@ Error::Error(const Error &other)
   this->message = other.message;
 }
 
-std::string Error::toString() const
+Error::operator std::string() const
 {
   return ERROR_MESSAGE_PREFIX + this->message;
+}
+
+std::ostream& operator<<(std::ostream &os, const Error &error)
+{
+  return (os << std::string(error));
 }

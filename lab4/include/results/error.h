@@ -16,7 +16,9 @@ public:
   Error(const std::string &message);
   Error(const Error &other);
   ~Error() = default;
-  std::string toString() const;
+  operator std::string() const;
+
+  friend std::ostream& operator<<(std::ostream &os, const Error &error);
 
 private:
   std::string message;

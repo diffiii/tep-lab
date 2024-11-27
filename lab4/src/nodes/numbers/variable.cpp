@@ -14,8 +14,7 @@ namespace nodes
 
     if (value.isFailure())
     {
-      std::vector<Error*> errors = value.getErrors();
-      return Result<double, Error>::fail(errors);
+      return Result<double, Error>::fail(value.getErrors());
     }
 
     return Result<double, Error>::ok(value.getValue());

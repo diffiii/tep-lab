@@ -8,16 +8,14 @@ namespace nodes
 
     if (leftEval.isFailure())
     {
-      std::vector<Error*> errors = leftEval.getErrors();
-      return Result<double, Error>::fail(errors);
+      return Result<double, Error>::fail(leftEval.getErrors());
     }
 
     const Result<double, Error> rightEval = this->getChild(1)->eval();
 
     if (rightEval.isFailure())
     {
-      std::vector<Error*> errors = rightEval.getErrors();
-      return Result<double, Error>::fail(errors);
+      return Result<double, Error>::fail(rightEval.getErrors());
     }
 
     if (rightEval.getValue() == 0)

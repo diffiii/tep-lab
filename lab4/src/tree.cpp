@@ -35,8 +35,7 @@ Result<Tree*, Error> Tree::enterFormula(const std::string &formula)
 
   if (subtree.isFailure())
   {
-    std::vector<Error*> errors = subtree.getErrors();
-    return Result<Tree*, Error>::fail(errors);
+    return Result<Tree*, Error>::fail(subtree.getErrors());
   }
 
   this->root = subtree.getValue();
@@ -86,8 +85,7 @@ Result<double, Error> Tree::eval() const
 
   if (result.isFailure())
   {
-    std::vector<Error*> errors = result.getErrors();
-    return Result<double, Error>::fail(errors);
+    return Result<double, Error>::fail(result.getErrors());
   }
 
   return Result<double, Error>::ok(result.getValue());
@@ -224,11 +222,11 @@ Tree::buildSubtree(std::vector<std::string> &tokens)
 
     if (varName.isFailure())
     {
-      std::vector<Error*> errors = varName.getErrors();
-      return Result<nodes::Node*, Error>::fail(errors);
+      return Result<nodes::Node*, Error>::fail(varName.getErrors());
     }
 
     this->variableNames.insert(varName.getValue());
+
     return Result<nodes::Node*, Error>::ok(
       new nodes::Variable(varName.getValue(), this)
     );
@@ -247,8 +245,7 @@ Tree::buildSubtree(std::vector<std::string> &tokens)
 
     if (child.isFailure())
     {
-      std::vector<Error*> errors = child.getErrors();
-      return Result<nodes::Node*, Error>::fail(errors);
+      return Result<nodes::Node*, Error>::fail(child.getErrors());
     }
 
     newNode->setChild(i, child.getValue());

@@ -16,7 +16,7 @@ int main()
 
   for (size_t i = 0; i < enterErrors.size(); i++)
   {
-    std::cout << enterErrors[i]->toString() << std::endl;
+    std::cout << *enterErrors[i] << std::endl;
   }
 
   const Result<void, Error> openResult = saver->open("file.txt");
@@ -24,7 +24,7 @@ int main()
 
   for (size_t i = 0; i < openErrors.size(); i++)
   {
-    std::cout << openErrors[i]->toString() << std::endl;
+    std::cout << *openErrors[i] << std::endl;
   }
 
   const Result<void, Error> saveResult = saver->save(enterResult);
@@ -32,7 +32,7 @@ int main()
 
   for (size_t i = 0; i < saveErrors.size(); i++)
   {
-    std::cout << saveErrors[i]->toString() << std::endl;
+    std::cout << *saveErrors[i] << std::endl;
   }
 
   delete saver;

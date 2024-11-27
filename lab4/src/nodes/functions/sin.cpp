@@ -10,8 +10,7 @@ namespace nodes
 
     if (childEval.isFailure())
     {
-      std::vector<Error*> errors = childEval.getErrors();
-      return Result<double, Error>::fail(errors);
+      return Result<double, Error>::fail(childEval.getErrors());
     }
 
     return Result<double, Error>::ok(sin(childEval.getValue()));

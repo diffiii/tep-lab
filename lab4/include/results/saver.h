@@ -69,7 +69,7 @@ Result<void, Error> Saver<T>::save(const Result<T, Error> &data)
 
     for (size_t i = 0; i < errors.size(); i++)
     {
-      this->file << errors[i]->toString() << "\n";
+      this->file << *errors[i] << "\n";
     }
   }
 
@@ -97,7 +97,7 @@ inline Result<void, Error> Saver<Tree*>::save(const Result<Tree*, Error> &data)
 
     for (size_t i = 0; i < errors.size(); i++)
     {
-      this->file << errors[i]->toString() << "\n";
+      this->file << *errors[i] << "\n";
     }
   }
 
