@@ -154,5 +154,6 @@ std::vector<E*> &Result<T, E>::getErrors() const
 }
 
 #include "result_void.h"
+#include "result_same.h"
 
 #endif

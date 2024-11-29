@@ -4,8 +4,36 @@
 #include "saver.h"
 #include "result.h"
 
+Result<int*, int> test(const int x, const int y)
+{
+  if ((x + y) % 2 == 0)
+  {
+    return Result<int*, int>::fail(new int(21));
+  }
+
+  return Result<int*, int>::ok(new int (12));
+}
+
 int main()
 {
+  // const int x = 1;
+  // const int y = 2;
+  //
+  // const Result<int*, int> result = test(x, y);
+  //
+  // std::cout << "isSuccess: " << result.isSuccess() << "\n";
+  // std::cout << "value: " << *result.getValue() << "\n";
+  //
+  // std::cout << "errors:\n";
+  //
+  // const std::vector<int*> errors = result.getErrors();
+  //
+  // for (size_t i = 0; i < errors.size(); i++)
+  // {
+  //   std::cout << *errors[i] << "\n";
+  // }
+
+
   const std::string formula = "* 2 sin + x - 1 / a 3 c d";
 
   Tree *tree = new Tree();

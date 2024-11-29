@@ -67,4 +67,5 @@ add_executable(
 
   # Saver
   include/results/saver.h
+        include/results/result_same.h
 )
